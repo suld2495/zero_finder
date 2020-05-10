@@ -1,28 +1,36 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Header @open="openDialog"/>
+    <MainView/>
+    <Footer/>
+    <AdressForm ref="form"/>
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Header from './layout/Header';
+import Footer from './layout/Footer';
+import MainView from './views/MainView';
+import AdressForm from './components/AdressForm';
 
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Header,
+    Footer,
+    MainView,
+    AdressForm
+  },
+  methods: {
+    openDialog() {
+      this.$refs.form.dialogFormVisible = true;
+    }
   }
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+body, html, #app {
+  height: 100%;
 }
 </style>
