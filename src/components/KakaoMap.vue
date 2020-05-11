@@ -23,10 +23,11 @@ export default {
         VueDaumMap,
         MapDetail
     },
-    props: ['addressList'],
+    props: ['addressList', 'centerKey'],
     watch: {
         addressList() {
             geocoder(this.map, this.addressList);   
+            this.setCenter();
         }
     },
     data() {
@@ -44,6 +45,12 @@ export default {
             this.map = map;
             
             geocoder(this.map, this.addressList);
+            this.setCenter();
+        },
+        setCenter() {
+            if (!this.centerKey) return;
+            let moveLatLon = new window.kakao.maps.LatLng(this.centerKey.y, this.centerKey.x);
+            this.map.panTo(moveLatLon);        
         }
     }
 }

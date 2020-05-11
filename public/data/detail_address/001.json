@@ -1,7 +1,11 @@
 [{
     "LOCATION": "001",
-    "LOCATION_KO": "영등포구"
+    "LOCATION_KO": "영등포구",
+    "X_CENTER": "126.903143681464",
+    "Y_CENTER": "37.519555574413"
 }, {
     "LOCATION": "002",
-    "LOCATION_KO": "관악구"
+    "LOCATION_KO": "관악구",
+    "X_CENTER": "126.904619054197",
+    "Y_CENTER": "37.5218971293994"
 }]

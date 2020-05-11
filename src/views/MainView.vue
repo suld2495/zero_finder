@@ -1,5 +1,5 @@
 <template>
-    <kakao-map :addressList="addressList"/>
+    <kakao-map :addressList="addressList" :centerKey="center"/>
 </template>
 
 <script>
@@ -11,7 +11,7 @@ export default {
         KakaoMap
     },
     computed: {
-        ...mapGetters(['addressList'])
+        ...mapGetters(['addressList', 'center'])
     },
     created() {
         this.$store.dispatch('FETCH_ADDRESS_LIST');

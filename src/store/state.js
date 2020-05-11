@@ -1,5 +1,6 @@
 export default {
     addressList: [],
     stateList: [],
-    guList: []
+    guList: [],
+    center: null
 }

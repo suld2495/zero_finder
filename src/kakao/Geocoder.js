@@ -5,7 +5,6 @@ let markers = [];
 function geocoder(map, addressList) {
     if (map) {
         removeAllMarker();
-
         for (const address of addressList) {
             createMarker(map, address);
         }
