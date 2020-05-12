@@ -4,7 +4,13 @@ export default {
     FETCH_ADDRESS_LIST({ commit }, value) {
         fetchAddressList(value)
             .then(result => {
-                commit('fetchAddressList', result.data);
+                commit('fetchAddressList', { list: result.data, center: value.center });
+            });
+    },
+    FETCH_ADDRESS_LIST_WITH_NAME({ commit }, value) {
+        fetchAddressList(value)
+            .then(result => {
+                commit('fetchAddressListWithName', { list: result.data });
             });
     },
     FETCH_STATE_LIST({ commit }) {

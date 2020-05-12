@@ -5,7 +5,7 @@ const config = {
     surfix: process.env.VUE_APP_API_SURFIX
 }
 
-function fetchAddressList(value) {
+function fetchAddressList({ value }) {
     if (process.env.NODE_ENV === 'development') {
         if (value) {
             if (value.s_name) {

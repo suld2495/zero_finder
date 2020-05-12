@@ -102,13 +102,14 @@ export default {
         },
         changeGu(code) {
             if (code) {
-                this.$store.dispatch('FETCH_ADDRESS_LIST', { state: this.state, location: code });
+                let gu = this.guList.find((gu) => gu.LOCATION === code);
+                this.$store.dispatch('FETCH_ADDRESS_LIST', {value: { state: this.state, location: code }, center: { x: gu.X_CENTER, y: gu.Y_CENTER }});
                 this.s_name = '';
                 this.$emit('close');
             }
         },
         changeName(s_name) {
-            this.$store.dispatch('FETCH_ADDRESS_LIST', { s_name });
+            this.$store.dispatch('FETCH_ADDRESS_LIST_WITH_NAME', { value: { s_name } });
             this.location = '';
             this.$emit('close');
         }

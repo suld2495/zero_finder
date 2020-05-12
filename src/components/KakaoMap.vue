@@ -1,5 +1,11 @@
 <template>
     <div class="kakao-map">
+        <div class="checkbox">
+            <el-radio-group v-model="checkboxGroup">
+                <el-radio-button label="1">전체</el-radio-button>
+                <el-radio-button label="2">찐</el-radio-button>
+            </el-radio-group>
+        </div>
         <vue-daum-map
             :appKey="appKey"
             :center.sync="center"
@@ -23,10 +29,11 @@ export default {
         VueDaumMap,
         MapDetail
     },
-    props: ['addressList'],
+    props: ['addressList', 'centerKey'],
     watch: {
         addressList() {
             geocoder(this.map, this.addressList);   
+            this.setCenter();
         }
     },
     data() {
@@ -36,7 +43,8 @@ export default {
             level: 3,
             mapTypeId: VueDaumMap.MapTypeId.NORMAL,
             libraries: ['services'],
-            map: null
+            map: null,
+            checkboxGroup: '1',
         }
     },
     methods: {
@@ -44,6 +52,12 @@ export default {
             this.map = map;
             
             geocoder(this.map, this.addressList);
+            this.setCenter();
+        },
+        setCenter() {
+            if (!this.centerKey || !this.centerKey.x || !this.centerKey.y) return;
+            let moveLatLon = new window.kakao.maps.LatLng(this.centerKey.x, this.centerKey.y);
+            this.map.panTo(moveLatLon);        
         }
     }
 }
@@ -51,4 +65,5 @@ export default {
 
 <style scoped>
 .kakao-map {height: 100%;}
+.checkbox {position: fixed; top: 55px;left: 3px; z-index: 100;}
 </style>
