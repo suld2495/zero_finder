@@ -43,12 +43,14 @@
                     v-model="state" 
                     placeholder="Select City"
                     size="small"
-                    @change="changeState">
+                    @change="changeState"
+                    default-first-option>
                     <el-option
                         v-for="item in stateList"
                         :key="item.STATE"
                         :label="item.STATE_KO"
-                        :value="item.STATE">
+                        :value="item.STATE"
+                        >
                     </el-option>
                 </el-select>
                 <el-select 
@@ -84,28 +86,31 @@ export default {
     },
     data() {
         return {
-            state: '',
+            state: 'A01',
             location: '',
             s_name: ''
         }
     },
     computed: mapGetters(['stateList', 'guList']),
     created() {
-        this.$store.dispatch('FETCH_STATE_LIST');
+        this.changeState(this.state);
     },
     methods: {
         changeState(code) {
             this.$store.dispatch('FETCH_GU_LIST', code);
-            this.address = '';
+            this.location = '';
         },
         changeGu(code) {
             if (code) {
                 this.$store.dispatch('FETCH_ADDRESS_LIST', { state: this.state, location: code });
+                this.s_name = '';
+                this.$emit('close');
             }
         },
         changeName(s_name) {
             this.$store.dispatch('FETCH_ADDRESS_LIST', { s_name });
-            this.address = this.state = '';
+            this.location = '';
+            this.$emit('close');
         }
     }
 }

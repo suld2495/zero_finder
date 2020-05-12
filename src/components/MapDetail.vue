@@ -20,7 +20,7 @@ export default {
     },
     created() {
         const self = this;
-        EventBus.$on('open', ({ S_GROUP = '음식점', ADDRESS = '서울 영등포구 의사당대로 1', S_NAME = '국회의사당', PHONE = '010-1234-5678' }) => {
+        EventBus.$on('open', ({ S_GROUP = '', ADDRESS = '', S_NAME = '', PHONE = '' }) => {
             self.dialogVisible = !self.dialogVisible;
             self.S_GROUP = S_GROUP;
             self.ADDRESS = ADDRESS;

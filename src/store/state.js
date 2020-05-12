@@ -1,5 +1,5 @@
 export default {
     addressList: [],
-    stateList: [],
+    stateList: [{"STATE_KO": "서울시", "STATE": "A01"}],
     guList: []
 }

@@ -7,10 +7,14 @@ const config = {
 
 function fetchAddressList(value) {
     if (process.env.NODE_ENV === 'development') {
-        if (value.s_name) {
-            return axios.get(`${config.baseUrl}/address/${value.s_name}${config.surfix}`, value);
+        if (value) {
+            if (value.s_name) {
+                return axios.get(`${config.baseUrl}/address/${value.s_name}${config.surfix}`, value);
+            } else {
+                return axios.get(`${config.baseUrl}/address/${value.state}/${value.location}${config.surfix}`, value);
+            }
         } else {
-            return axios.get(`${config.baseUrl}/address/${value.state}/${value.location}${config.surfix}`, value);
+            return axios.get(`${config.baseUrl}/address/A01/001${config.surfix}`, value);
         }
     } else {
         return axios.post(`${config.baseUrl}/search_name${config.surfix}`, value);

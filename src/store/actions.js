@@ -1,7 +1,7 @@
 import { fetchAddressList, fetchStateList, fetchGuList } from '../api/addressAPI';
 
 export default {
-    FETCH_ADDRESS_LIST({ commit }, value = { state: '001', location: '001' }) {
+    FETCH_ADDRESS_LIST({ commit }, value) {
         fetchAddressList(value)
             .then(result => {
                 commit('fetchAddressList', result.data);

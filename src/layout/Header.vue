@@ -14,12 +14,14 @@
         <media 
             :query="{ maxWidth: 1024 }">
             <div class="nav-mobile">
-                <i class="el-icon-menu" @click="openNav"></i>
+                <i class="el-icon-search" @click="openNav"></i>
+                <i class="el-icon-edit" @click="openDialog"></i>
                 <div class="nav-mobile-container" v-if="navVisible">
                     <div>
-                        <address-search/>
+                        <address-search
+                            @close="openNav"
+                        />
                     </div>
-                    <div @click="openDialog" class="address-register address-register-mobile">{{$t('message.registerTitle')}}</div>
                 </div>
             </div>
         </media>
@@ -87,11 +89,12 @@ export default {
 .nav-mobile {
     display: flex;
     align-items: center;
+    margin-right: -20px;
 }
-.el-icon-menu {font-size: 26px; color: #fff;cursor: pointer;}
+.nav-mobile i {font-size: 26px; color: #fff;cursor: pointer;font-size: 22px;margin-left: 10px;}
 .nav-mobile-container {
     width: 100%;
-    height: 100%;
+    height: 180px;
     position: fixed;
     left: 0;
     top: 50px;
@@ -99,6 +102,7 @@ export default {
     animation-duration: 500ms;
     animation-name: padein;
     animation-direction: alternate;
+    padding-top:30px;
 }
 .address-register-mobile {text-align: center;}
 @keyframes padein {
