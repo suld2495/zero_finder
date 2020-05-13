@@ -33,4 +33,12 @@ function removeAllMarker() {
     }
 }
 
-export { geocoder };
+function changeMarker(map, check, addressList) {
+    let newList = addressList.filter((address) => address.use_yn === check);
+    geocoder(map, newList);
+}
+
+export { 
+    geocoder, 
+    changeMarker 
+};

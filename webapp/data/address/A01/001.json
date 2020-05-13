@@ -1,9 +1,11 @@
 [{
         "Y_COORDINATE": "126.903143681464",
-        "X_COORDINATE": "37.519555574413"
+        "X_COORDINATE": "37.519555574413",
+        "use_yn": "Y"
     },
     {
         "Y_COORDINATE": "126.904619054197",
-        "X_COORDINATE": "37.5218971293994"
+        "X_COORDINATE": "37.5218971293994",
+        "use_yn": "N"
     }
 ]
