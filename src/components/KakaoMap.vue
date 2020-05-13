@@ -2,8 +2,9 @@
     <div class="kakao-map">
         <div class="checkbox">
             <el-radio-group v-model="checkboxGroup" @change="handleChangeBox">
-                <el-radio-button label="Y">전체</el-radio-button>
-                <el-radio-button label="N">찐</el-radio-button>
+                <el-radio-button label="Y">확인 가맹점</el-radio-button>
+                <el-radio-button label="N">사용불가 가맹점</el-radio-button>
+                <el-radio-button label="">미확인 가맹점</el-radio-button>
             </el-radio-group>
         </div>
         <vue-daum-map
