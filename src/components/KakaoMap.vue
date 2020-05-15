@@ -35,7 +35,7 @@ export default {
         addressList() {
             geocoder(this.map, this.addressList);   
             this.checkboxGroup = this.initCheckbox();
-            this.level = 6;
+            this.level = 8;
             this.$nextTick(() => {
                 this.setCenter();    
             });

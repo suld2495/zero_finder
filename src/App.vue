@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <Header @open="openDialog"/>
-    <MainView/>
+    <router-view></router-view>
     <Footer/>
     <AdressForm ref="form"/>
   </div>
@@ -10,7 +10,6 @@
 <script>
 import Header from './layout/Header';
 import Footer from './layout/Footer';
-import MainView from './views/MainView';
 import AdressForm from './components/AdressForm';
 
 export default {
@@ -18,7 +17,6 @@ export default {
   components: {
     Header,
     Footer,
-    MainView,
     AdressForm
   },
   methods: {

@@ -40,5 +40,5 @@ function changeMarker(map, check, addressList) {
 
 export { 
     geocoder, 
-    changeMarker 
+    changeMarker
 };

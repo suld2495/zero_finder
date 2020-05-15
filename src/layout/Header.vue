@@ -67,6 +67,7 @@ export default {
     z-index: 10;
     width: 100%;
     box-sizing: border-box;
+    z-index: 101;
 }
 .title {
     color: #fff;
