@@ -4,21 +4,35 @@
 
 <script>
 import { select, insert, search } from '../api/addressInsertAPI';
+import { mapGetters } from 'vuex';
 
 export default {
+    data() {
+        return {
+            state: '서울특별시'
+        }
+    },
+    computed: {
+        ...mapGetters(['guList'])
+    },
     methods: {
         async handleClick() {
             select().then(async ({ data }) => {
-                let list = [];
-
                 for (const item of data) {
-                    let response = await search(item.ADDRESS);
+                    let location = this.getLocation(item.LOCATION);
+                    let response = await search(`${this.state} ${location} ${item.ADDRESS}`);
                     let result = response.data.documents[0];
-                    if (result) list.push({ S_CODE: item.S_CODE, X_COORDINAME: result.y, Y_COORDINAME: result.x });
+                    if (result) {
+                        item.X_COORDINATE = result.y;
+                        item.Y_COORDINATE = result.x;
+                    }
                 }
 
-                insert({ list });
+                insert({ data });
             });
+        },
+        getLocation(code) {
+            return this.guList.find((gu) => gu.LOCATION === code)?.LOCATION_KO;
         }
     }
 }
