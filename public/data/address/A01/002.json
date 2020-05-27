@@ -1,9 +1,19 @@
 [{
         "Y_COORDINATE": "126.951870098434",
-        "X_COORDINATE": "37.4742339489414"
+        "X_COORDINATE": "37.4742339489414",
+        "use_yn": "Y",
+        "S_GROUP": "C01",
+        "ADDRESS": "당산로 123 영등포구청",
+        "S_NAME": "할리스",
+        "PHONE": "010-1234-5567"
     },
     {
         "Y_COORDINATE": "126.957030927968",
-        "X_COORDINATE": "37.480642566485"
+        "X_COORDINATE": "37.480642566485",
+        "use_yn": "",
+        "S_GROUP": "C01",
+        "ADDRESS": "당산로 123 영등포구청",
+        "S_NAME": "할리스",
+        "PHONE": "010-1234-5567"
     }
 ]

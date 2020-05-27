@@ -2,9 +2,8 @@
     <div class="kakao-map">
         <div class="checkbox">
             <el-radio-group v-model="checkboxGroup" @change="handleChangeBox">
-                <el-radio-button label="Y">확인 가맹점</el-radio-button>
-                <el-radio-button label="N">사용불가 가맹점</el-radio-button>
-                <el-radio-button label="">미확인 가맹점</el-radio-button>
+                <el-radio-button label="Y">확인 가맹점 + 사용불가</el-radio-button>
+                <el-radio-button label="N">미확인 가맹점</el-radio-button>
             </el-radio-group>
         </div>
         <vue-daum-map
@@ -38,6 +37,7 @@ export default {
             this.level = 8;
             this.$nextTick(() => {
                 this.setCenter();    
+                this.handleChangeBox(this.checkboxGroup);
             });
         }
     },
@@ -47,7 +47,7 @@ export default {
             center: { lat: process.env.VUE_APP_LAT, lng: process.env.VUE_APP_LNG },
             level: 3,
             mapTypeId: VueDaumMap.MapTypeId.NORMAL,
-            libraries: ['services'],
+            libraries: ['services', 'clusterer'],
             map: null,
             checkboxGroup: this.initCheckbox(),
         }
@@ -58,6 +58,7 @@ export default {
             
             geocoder(this.map, this.addressList);
             this.setCenter();
+            this.handleChangeBox(this.checkboxGroup);
         },
         setCenter() {
             if (!this.centerKey || !this.centerKey.x || !this.centerKey.y) return;

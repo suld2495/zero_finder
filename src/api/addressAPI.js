@@ -49,9 +49,14 @@ function storeAddress(param) {
 
 }
 
+function reportAddress(param) {
+    return axios.post(`${config.baseUrl}/reportAddress`, param);
+}
+
 export {
     fetchAddressList,
     fetchStateList,
     fetchGuList,
     storeAddress,
+    reportAddress,
 }
