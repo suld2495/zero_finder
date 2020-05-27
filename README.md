@@ -1,4 +1,4 @@
-# zero_pay 
+# zero_pay
 
 ## Project setup
 ```
