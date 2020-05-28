@@ -1,24 +1,31 @@
 // import { EventBus } from '../EventBus';
 
-let markers = [];
+let clusterer;
+let markers;
 
 function geocoder(map, addressList) {
+    if (!clusterer) createClusterer(map);
     if (map) {
         removeAllMarker();
-        createMarker(map, addressList);
+        createMarker(addressList);
     }
 }
 
-function createMarker(map, addressList) {
-    var clusterer = new window.kakao.maps.MarkerClusterer({
+function createClusterer(map) {
+    clusterer = new window.kakao.maps.MarkerClusterer({
         map: map, // 마커들을 클러스터로 관리하고 표시할 지도 객체 
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정 
         minLevel: 10 // 클러스터 할 최소 지도 레벨 
     });
+}
 
-    var markers = addressList.map(function(position) {
+function createMarker(addressList) {
+    markers = addressList.map(function(position) {
+        let markerImage = createMarkerImage(position.use_yn); 
+
         return new window.kakao.maps.Marker({
-            position : new window.kakao.maps.LatLng(position.X_COORDINATE, position.Y_COORDINATE)
+            position : new window.kakao.maps.LatLng(position.X_COORDINATE, position.Y_COORDINATE),
+            image: markerImage
         });
     });
 
@@ -26,10 +33,25 @@ function createMarker(map, addressList) {
     clusterer.addMarkers(markers);
 }
 
-// function createMarker(map, mapData) {
-//     var coords = new window.kakao.maps.LatLng(mapData.X_COORDINATE, mapData.Y_COORDINATE);
+function createMarkerImage(check) {
+    let imageSize
+    let imageSrc
 
-//     var marker = new window.kakao.maps.Marker({
+    if (check === 'N') {
+        imageSize = new window.kakao.maps.Size(64, 69);
+        imageSrc = 'https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/marker_red.png'
+    } else {
+        imageSize = new window.kakao.maps.Size(24, 35);
+        imageSrc = "https://t1.daumcdn.net/localimg/localimages/07/mapapidoc/markerStar.png"; 
+    }
+
+    return new window.kakao.maps.MarkerImage(imageSrc, imageSize); 
+}
+
+// function createMarker(map, mapData) {
+//     let coords = new window.kakao.maps.LatLng(mapData.X_COORDINATE, mapData.Y_COORDINATE);
+
+//     let marker = new window.kakao.maps.Marker({
 //         map: map,
 //         position: coords
 //     });
@@ -43,9 +65,7 @@ function createMarker(map, addressList) {
 // }
 
 function removeAllMarker() {
-    for (const marker of markers) {
-        marker.setMap(null);
-    }
+    markers && clusterer.removeMarkers(markers);
 }
 
 function changeMarker(map, check, addressList) {

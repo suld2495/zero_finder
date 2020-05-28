@@ -32,7 +32,6 @@ export default {
     props: ['addressList', 'centerKey'],
     watch: {
         addressList() {
-            geocoder(this.map, this.addressList);   
             this.checkboxGroup = this.initCheckbox();
             this.level = 8;
             this.$nextTick(() => {
