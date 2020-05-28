@@ -1,4 +1,4 @@
-// import { EventBus } from '../EventBus';
+import { EventBus } from '../EventBus';
 
 let clusterer;
 let markers;
@@ -22,11 +22,16 @@ function createClusterer(map) {
 function createMarker(addressList) {
     markers = addressList.map(function(position) {
         let markerImage = createMarkerImage(position.use_yn); 
-
-        return new window.kakao.maps.Marker({
+        let marker = new window.kakao.maps.Marker({
             position : new window.kakao.maps.LatLng(position.X_COORDINATE, position.Y_COORDINATE),
             image: markerImage
         });
+
+        window.kakao.maps.event.addListener(marker, 'click', function() {
+            EventBus.$emit('open', position);
+        });
+
+        return marker
     });
 
     // 클러스터러에 마커들을 추가합니다
@@ -56,9 +61,9 @@ function createMarkerImage(check) {
 //         position: coords
 //     });
 
-//     window.kakao.maps.event.addListener(marker, 'click', function() {
-//         EventBus.$emit('open', mapData);
-//     });
+    // window.kakao.maps.event.addListener(marker, 'click', function() {
+    //     EventBus.$emit('open', mapData);
+    // });
 
 //     marker.setMap(map);
 //     markers.push(marker);
